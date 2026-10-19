@@ -1,0 +1,20 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}DryONut | Premium Dry Fruits & Nuts{% endblock %}</title>
+<link rel="icon" href="{{ url_for('static', filename='img/logo.svg') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"></head><body>
+<div class="topbar">🚚 Shipping in 24-48 hours · 8% off above ₹899 · 10% off above ₹1500</div>
+<header><div class="wrap nav"><a href="/"><img src="{{ url_for('static', filename='img/logo.svg') }}" alt="DryONut"></a>
+<nav><a href="/shop">Shop</a><a href="/shop?cat=Date Bites">Date Bites</a><a href="/shop?cat=Roasted Makhana">Makhana</a><a href="/reviews">Reviews</a><a href="/about">Why DryONut?</a><a href="/contact">Contact</a></nav>
+<a class="cartbtn" href="/cart">🛍 Bag<b class="cnt">0</b></a></div></header>
+{% macro card(p) %}<div class="card" data-cat="{{p.cat}}" data-name="{{p.name|lower}}">
+{% if p.tag %}<span class="badge">{{p.tag}}</span>{% endif %}<span class="off">{{ ((1-p.price/p.mrp)*100)|round|int }}% OFF</span>
+<a href="/product/{{p.id}}"><div class="pimg" style="background:{{p.color}}">{{p.emoji}}</div></a>
+<div class="pbody"><h3><a href="/product/{{p.id}}">{{p.name}}</a></h3><div class="stars">★★★★★ <span class="muted">4.5</span></div>
+<div class="price">₹{{p.price}}<s>₹{{p.mrp}}</s></div><button class="btn" onclick="addToCart('{{p.id}}')">Add to bag</button></div></div>{% endmacro %}
+{% block body %}{% endblock %}
+<footer><div class="wrap"><div class="cols"><div><img src="{{ url_for('static', filename='img/logo.svg') }}" alt="DryONut"><p>Reimagining snacking with great taste, wholesome ingredients and no compromise.</p></div>
+<div><b>Shop</b><a href="/shop">All Products</a><a href="/shop?cat=Date Bites">Date Bites</a><a href="/shop?cat=Seeds">Seeds</a></div>
+<div><b>Know More</b><a href="/about">About Us</a><a href="/reviews">Customer Reviews</a><a href="/contact">Contact Us</a></div>
+<div><b>Pay securely</b><p>UPI · Cards · NetBanking<br>via Razorpay</p></div></div><small>© 2026 DryONut. Demo project.</small></div></footer>
+<div id="toast" class="toast"></div>
+<script>const PRODUCTS={{ PRODUCTS|tojson }};</script><script src="{{ url_for('static', filename='js/app.js') }}"></script>{% block scripts %}{% endblock %}</body></html>

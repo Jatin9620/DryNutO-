@@ -1,0 +1,8 @@
+{% extends "base.html" %}{% block body %}
+<div class="hero"><div class="wrap"><div><h1>Snacking, made better.</h1><p>Premium dry fruits, date bites and roasted makhana sourced from 5000+ farmers. Zero adulteration, free shipping above ₹499.</p><br><a class="btn" href="/shop">Shop Now</a> <a class="btn alt" href="/about">Our Story</a></div><div class="art">🌰🥜</div></div></div>
+<section><div class="wrap"><h2 class="t">Snack Your Way</h2><div class="cats">
+{% for c,e in [('Date Bites','🍫'),('Roasted Makhana','🌸'),('Dry Fruit Mixes','🥣'),('Seeds','🌱'),('Essentials','🌰')] %}<a class="cat" href="/shop?cat={{c}}"><span>{{e}}</span>{{c}}</a>{% endfor %}</div></div></section>
+<section class="band"><div class="wrap"><h2 class="t">DryONut Favourites</h2><div class="grid">{% for p in PRODUCTS if p.tag in ('Must-try','Bestseller') %}{{ card(p) }}{% endfor %}</div></div></section>
+<section><div class="wrap feats"><div>🌾<p><b>5000+ farmers</b><br>Direct sourcing</p></div><div>🔬<p><b>Zero adulteration</b><br>Lab-tested quality</p></div><div>🚚<p><b>24-48h shipping</b><br>Across India</p></div><div>🔒<p><b>Secure payments</b><br>Razorpay powered</p></div></div></section>
+<section class="band"><div class="wrap"><h2 class="t">Loved by customers</h2><div class="grid">{% for r in reviews %}<div class="rev"><div class="stars">{{ '★'*r.rating }}</div><p>“{{r.text}}”</p><b>{{r.name}}</b></div>{% endfor %}</div><p style="text-align:center"><a class="btn" href="/reviews">Read all reviews</a></p></div></section>
+{% endblock %}

@@ -1,0 +1,3 @@
+{% extends "base.html" %}{% block title %}Contact | DryONut{% endblock %}{% block body %}
+<section><div class="wrap two"><div><h2 style="color:var(--brown)">Contact us</h2><p>📧 hello@dryonut.example<br>📞 +91 90000 00000<br>🕘 Mon–Sat, 9am–6pm</p><p class="muted">Track order, returns & refunds: send your order ID (e.g. DON1A2B3C4D).</p></div>
+<div class="box"><form id="contactform"><input class="f" name="name" placeholder="Name" required><input class="f" type="email" name="email" placeholder="Email" required><textarea class="f" name="message" rows="5" placeholder="Message" required></textarea><div class="err" id="cerr"></div><button class="btn">Send message</button></form></div></div></section>{% endblock %}

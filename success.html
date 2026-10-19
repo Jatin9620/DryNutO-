@@ -1,0 +1,3 @@
+{% extends "base.html" %}{% block title %}Order confirmed | DryONut{% endblock %}{% block body %}
+<section><div class="wrap" style="max-width:600px;text-align:center"><div style="font-size:80px">{{ '🎉' if o.status=='paid' else '⏳' }}</div><h2 style="color:var(--brown)">{{ 'Thank you, ' ~ o.name ~ '!' if o.status=='paid' else 'Payment pending' }}</h2>
+<p>Order <b>{{o.id}}</b> · Total <b>₹{{o.total}}</b> · Status: <b>{{o.status}}</b></p><p class="muted">Confirmation will be sent to {{o.email}}. Shipping in 24-48 hours.</p><a class="btn" href="/shop">Continue shopping</a></div></section>{% endblock %}

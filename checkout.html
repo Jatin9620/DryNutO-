@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block title %}Checkout | DryONut{% endblock %}{% block body %}
+<section><div class="wrap"><h2 class="t">Checkout</h2><div class="two"><div class="box"><h3>Delivery details</h3>
+<form id="checkoutform"><input class="f" name="name" placeholder="Full name" required><input class="f" type="email" name="email" placeholder="Email" required><input class="f" name="phone" placeholder="Phone" pattern="[0-9+ ]{10,15}" required><textarea class="f" name="address" rows="3" placeholder="Full address with PIN code" required></textarea>
+<div class="err" id="perr"></div><button class="btn" style="width:100%">Pay securely</button></form>
+<p class="muted">{% if live %}Payments processed by Razorpay.{% else %}Demo payment mode (set Razorpay keys for live gateway).{% endif %}</p></div>
+<div class="box"><h3>Order summary</h3><div id="summary"></div></div></div></div></section>
+<div class="modal" id="paymodal"><div class="box"><h3>💳 Demo Payment Gateway</h3><p>Pay <b id="paytotal"></b></p><input class="f" id="card" placeholder="4111 1111 1111 1111" maxlength="19"><div style="display:flex;gap:10px"><input class="f" placeholder="MM/YY"><input class="f" placeholder="CVV" type="password" maxlength="4"></div>
+<div class="err" id="merr"></div><button class="btn" id="demopay" style="width:100%">Pay now</button><p><a href="#" id="closemodal" class="muted" onclick="return false">Cancel</a></p><p class="muted">Test card 4111 1111 1111 1111 succeeds; ending 0002 is declined.</p></div></div>
+{% endblock %}{% block scripts %}{% if live %}<script src="https://checkout.razorpay.com/v1/checkout.js"></script>{% endif %}{% endblock %}

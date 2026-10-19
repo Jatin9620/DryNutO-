@@ -1,0 +1,3 @@
+{% extends "base.html" %}{% block title %}Reviews | DryONut{% endblock %}{% block body %}
+<section><div class="wrap"><h2 class="t">What our customers say</h2><div class="grid">{% for r in reviews %}<div class="rev"><div class="stars">{{'★'*r.rating}}</div><p>“{{r.text}}”</p><b>{{r.name}}</b> <a class="muted" href="/product/{{r.product_id}}">· {{ PRODUCTS|selectattr('id','equalto',r.product_id)|map(attribute='name')|first }}</a></div>{% endfor %}</div>
+<p style="text-align:center;margin-top:24px" class="muted">Open any product page to add your own review.</p></div></section>{% endblock %}

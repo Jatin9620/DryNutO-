@@ -1,0 +1,12 @@
+{% extends "base.html" %}{% block title %}{{p.name}} | DryONut{% endblock %}{% block body %}
+<section><div class="wrap"><div class="pd"><div class="pimg" style="background:{{p.color}}">{{p.emoji}}</div>
+<div><span class="muted">{{p.cat}}</span><h1 style="color:var(--brown);margin:6px 0">{{p.name}}</h1>
+<div class="stars">{% set avg = (reviews|sum(attribute='rating')/reviews|length) if reviews else 0 %}{{ '★'*(avg|round|int) }} <span class="muted">{{ '%.1f'|format(avg) }} ({{reviews|length}} reviews)</span></div>
+<p class="price" style="font-size:28px">₹{{p.price}} <s>₹{{p.mrp}}</s></p><p>{{p.desc}}</p><ul class="muted"><li>No preservatives · Zero adulteration</li><li>Free shipping above ₹499</li><li>Easy 7-day returns</li></ul>
+<div class="qty"><button onclick="q(-1)">−</button><span id="qv">1</span><button onclick="q(1)">+</button></div>
+<p><button class="btn" onclick="addToCart('{{p.id}}',+$('#qv').textContent)">Add to bag</button> <a class="btn alt" href="/cart" onclick="addToCart('{{p.id}}',+$('#qv').textContent)">Buy now</a></p></div></div></div></section>
+<section class="band"><div class="wrap two"><div><h2 style="color:var(--brown)">Customer reviews</h2>{% for r in reviews %}<div class="rev" style="background:#fff;margin-bottom:12px"><div class="stars">{{'★'*r.rating}}</div><p>{{r.text}}</p><b>{{r.name}}</b></div>{% else %}<p>No reviews yet. Be the first!</p>{% endfor %}</div>
+<div class="box"><h3>Write a review</h3><form id="reviewform"><input type="hidden" name="product_id" value="{{p.id}}"><div class="rate">{% for i in range(5) %}<span>★</span>{% endfor %}</div>
+<input class="f" name="name" placeholder="Your name" required><textarea class="f" name="text" rows="4" placeholder="Your experience" required></textarea><div class="err" id="rerr"></div><button class="btn">Submit</button></form></div></div></section>
+<section><div class="wrap"><h2 class="t">You may also like</h2><div class="grid">{% for x in related %}{{ card(x) }}{% endfor %}</div></div></section>
+{% endblock %}{% block scripts %}<script>function q(d){const e=$('#qv');e.textContent=Math.max(1,+e.textContent+d)}</script>{% endblock %}
